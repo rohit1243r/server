@@ -37,10 +37,14 @@ const chatLimiter = rateLimit({
 });
 
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://fusionset.netlify.app', 'https://your-frontend-domain.vercel.app'] 
-    : ['http://localhost:3000'],
-  credentials: true
+  origin: [
+    'http://localhost:3000',
+    'https://fusionset.netlify.app',
+    'https://your-frontend-domain.vercel.app'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json({ limit: '10mb' }));
