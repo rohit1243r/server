@@ -38,7 +38,7 @@ const chatLimiter = rateLimit({
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.vercel.app'] 
+    ? ['https://fusionset.netlify.app', 'https://your-frontend-domain.vercel.app'] 
     : ['http://localhost:3000'],
   credentials: true
 }));
