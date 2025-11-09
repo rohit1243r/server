@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: ai-fusion-chat-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: ai-fusion-chat-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: OPENROUTER_API_KEY
+        sync: false
+
+databases:
+  - name: ai-fusion-chat-db
+    databaseName: ai-fusion-chat
+    user: ai-fusion-user
